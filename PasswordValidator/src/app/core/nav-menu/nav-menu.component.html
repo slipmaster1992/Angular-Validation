@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">A.N World</a>
+      <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
+      [attr.aria-expanded]="!isCollapsed" aria-controls="nav-menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="navbar-collapse" id="nav-menu" [ngbCollapse]="isCollapsed">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a class="nav-link" routerLink="/demo">Demo
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+  
+      </div>
+    </div>
+  </nav>
+  

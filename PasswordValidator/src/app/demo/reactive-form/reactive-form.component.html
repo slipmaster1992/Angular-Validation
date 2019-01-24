@@ -1,0 +1,72 @@
+<h2>Reactive Form</h2>
+
+<form [formGroup]="reactiveForm">
+
+  <div class="form-group">
+
+    <label>User Name</label>
+    <input type="text" class="form-control" formControlName="username" required>
+    <div class="text-danger" *ngIf="username.invalid &&(username.dirty || username.touched)">
+      <div *ngIf="username.errors['required']">User Name Is Required</div>
+      <div *ngIf="username.errors['UniqueUsername']"> User Name Already Exist </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+
+    <label>Email</label>
+    <input type="email" class="form-control" formControlName="email">
+    <div class="text-danger" *ngIf="email.invalid &&(email.dirty || email.touched)">
+      <div *ngIf="email.errors['required']">Email Is Required</div>
+      <div *ngIf="email.errors['uniqueEmail']"> Email Already Exist </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+
+    <label>Email Confirm</label>
+    <input type="email" class="form-control" formControlName="emailConfirm" compare="email">
+    <div class="text-danger" *ngIf="emailConfirm.invalid &&(emailConfirm.dirty || emailConfirm.touched)">
+      <div *ngIf="emailConfirm.errors['required']">Email Confirm Is Required</div>
+      <div *ngIf="emailConfirm.errors['compare']"> Email Confirm Do Not Match </div>
+      <div *ngIf="email.errors['uniqueEmail']"> Email Already Exist </div>
+    </div>
+  </div>
+
+
+
+  <div class="form-group">
+
+    <label>Password</label>
+    <input type="password" class="form-control" formControlName="password">
+    <div class="text-danger" *ngIf="password.invalid &&(password.dirty || password.touched)">
+      Password Required
+    </div>
+  </div>
+
+  <div class="form-group">
+
+    <label>Password Confirm</label>
+    <input type="password" class="form-control" formControlName="passwordConfirm" compare="password">
+    <div class="text-danger" *ngIf="passwordConfirm.invalid &&(passwordConfirm.dirty || passwordConfirm.touched)">
+      <div *ngIf="passwordConfirm.errors['required']">Password Confirm Is Required</div>
+      <div *ngIf="passwordConfirm.errors['compare']"> Password Confirm Do Not Match </div>
+
+    </div>
+  </div>
+
+
+
+  <button type="button" class="btn btn-primary" [disabled]="reactiveForm.invalid">Submit </button>
+</form>
+
+<br>
+
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Form Status: {{reactiveForm.status}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Form Value</h6>
+    <pre>{{reactiveForm.value | json}}</pre>
+  </div>
+</div>
